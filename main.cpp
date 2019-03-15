@@ -32,7 +32,7 @@ using namespace std;
  |   
  |     Known Bugs:  No bugs in particular but when there are multiples modes, the mode function is designed to take the closest mode to the beginning of the list rather than listing both modes. 
  |
- *===================================================================================================*/
+ |===================================================================================================*/
 
 //declaring array of floats of a int size so we can calculate statistics 
 float calcMean(float data[]);
