@@ -33,7 +33,7 @@
  |    Algorithm:  OUTLINE THE APPROACH USED BY THE PROGRAM TO SOLVE THE
  |      PROBLEM.
  |
- |   Known Bugs: If you try to read or edit the new contacts you just added, it would                         |                produce a seg fault. :( 
+ |   Known Bugs: If you try to search or edit the new contacts you just added, it would                         |                produce a seg fault. :( 
  |      
  |
  *===========================================================================*/
