@@ -48,7 +48,7 @@ char *str_copy(char *des, const char *src)
      assert(des != NULL);
      while ((*des++ = *src++) != '\0');
      return des;
-}
+} //Thanks to chenyu_insist! https://blog.csdn.net/u011068702/article/details/78509338
 
 
 int main()
