@@ -1,12 +1,12 @@
 #HungrySnake By: Juntong
 
-*Compile
+*Compile:
 make -f makefile.macosx
 
-*Run
+*Run:
 ./snakegame
 
-*Rules
+*Rules:
 1. The list of green blocks is our Snake, and the light green block is its head, dark blocks, body. 
 2. Move Snake with e,d,s,f. 
 3. Snake initially has three blocks, whenever it eats an apple (the red block), it gains another block. 
