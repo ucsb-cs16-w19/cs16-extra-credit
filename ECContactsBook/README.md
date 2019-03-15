@@ -11,23 +11,23 @@ This is a contacts book which can store 120 pages of contacts' information(Linke
 
 *Keys:
 (1)Main Menu:
-1-Open My Contacts Book
-2-Add New Contact
-3-Search
-4-Delete Contact
-5-Edit Contact
-q-Quit
+1-Open My Contacts Book;
+2-Add New Contact;
+3-Search;
+4-Delete Contact;
+5-Edit Contact;
+q-Quit;
 
 (2)Each Page:
-w-PreviousPage 
-s-NextPage 
-b-MainMenu
+w-PreviousPage; 
+s-NextPage; 
+b-MainMenu;
 
-c-NewSearch 
-u-Edit 
-d-Delete
+c-NewSearch; 
+u-Edit; 
+d-Delete;
 
 (3)Special Functions:
-a-Confirm
-y-Continue deleting
-other random buttons-Retype
+a-Confirm;
+y-Continue deleting;
+other random buttons-Retype;
