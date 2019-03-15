@@ -1,18 +1,22 @@
-# CS 16 Extra Credit Project
-Extra credit project that showcases the concepts learned in CS 16.
+#HungrySnake By: Juntong
 
-To submit your project:
-* Fork this repo
-* Clone *your fork* of this repo
-* Make your changes in that repo
-* Commit your changes
-* Push your changes (to the forked repo that you cloned above)
+*Compile
+make -f makefile.macosx
 
-Whenever you are ready to submit your extra credit, submit a pull request through the GitHub.com interface.
+*Run
+./snakegame
 
-Make sure that you update the documentation inside `main.cpp`. If you have more than one file to submit,
-make sure that each file uses the same format and provides that documentation. Additionally, if you have
-several files, ensure that your Makefile allows us to properly compile each project.
+*Rules
+1. The list of green blocks is our Snake, and the light green block is its head, dark blocks, body. 
+2. Move Snake with e,d,s,f. 
+3. Snake initially has three blocks, whenever it eats an apple (the red block), it gains another block. 
+4. Another new apple appears randomly every time when the old one is eaten. 
+5. Please do not let the Snake eat itself or hit the wall, it will die immediately :( 
 
-Feel free to update your repo's README to provide high-level overview of the project and your 
-motivation for creating it (other than a grade ;-)).
+*Keys:
+g - Start
+e - Move up
+d - Move down
+s - Move left
+f - Move right
+q - Quit
