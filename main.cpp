@@ -28,10 +28,9 @@ using namespace std;
  |                        Note: Because we have an array of size 10, the function will always be the first case. I programmed the second case if the programmer ever changed the array size.
  |                Mode: First, the program iterates through the array for when it is one less than the size of the array. In our case this is 0 to 9. Then, it checks if the first and second
  |                      value are identifical. If they are, the functions add 1 to the count. We then set the max value to that count so we can see which is the largest value.
- |                Standard Deviation: 
+ |                Standard Deviation: First I used the Mean value from above and then iterated through another loop to keep adding each terms standard deviation sDev += pow(data[x] - mean, 2);
  |   
- |     Known Bugs:  IF THE PROGRAM DOES NOT FUNCTION CORRECTLY IN SOME
- |      SITUATIONS, DESCRIBE THE SITUATIONS AND PROBLEMS HERE.
+ |     Known Bugs:  No bugs in particular but when there are multiples modes, the mode function is designed to take the closest mode to the beginning of the list rather than listing both modes. 
  |
  *===================================================================================================*/
 
