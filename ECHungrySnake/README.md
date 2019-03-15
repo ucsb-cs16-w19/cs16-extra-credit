@@ -20,3 +20,5 @@ d - Move down
 s - Move left
 f - Move right
 q - Quit
+
+*There're several things, such as OpenGL and srand time, in this program that we didn't learn in lectures, so I searched on Google for help.
