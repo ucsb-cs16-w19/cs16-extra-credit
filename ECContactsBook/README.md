@@ -9,6 +9,8 @@ make contacts
 *About:
 This is a contacts book which can store 120 pages of contacts' information(Linked lists). Each page has 12 contacts, you can add, search, delete, and edit them. However, there is a little bug: you cannot edit the contacts you just added - if you add a new contact, you can find it in the last page, but when you are trying to search, delete, or edit it, it would produce a seg fault.
 
+The function "char *str_copy(char *des, const char *src)" is from chenyu_insist https://blog.csdn.net/u011068702/article/details/78509338
+
 *Keys:
 (1)Main Menu:
 1-Open My Contacts Book;
