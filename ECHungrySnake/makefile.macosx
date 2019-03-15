@@ -1,0 +1,8 @@
+SOURCES=HungrySnake.cpp
+LIBS=-framework OpenGL -framework GLUT -framework Foundation
+
+all:
+	g++ -std=c++11 $(LIBS) ${SOURCES} -o HungrySnake
+
+clean:
+	rm -f HungrySnake
