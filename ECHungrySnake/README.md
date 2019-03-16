@@ -4,7 +4,7 @@
 make -f makefile.macosx
 
 *Run:
-./snakegame
+./HungrySnake
 
 *Rules:
 1. The list of green blocks is our Snake, and the light green block is its head, dark blocks, body. 
