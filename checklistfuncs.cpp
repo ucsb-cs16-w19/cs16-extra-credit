@@ -4,7 +4,8 @@
 #include "structs.h"
 
 using namespace std;
-
+//preconditions: no input
+//post conditions: returns a pointer to a new checklist
 checklist* createchecklist(){
 	checklist* newchecklist = new checklist;
 	newchecklist->first = NULL;
@@ -12,6 +13,10 @@ checklist* createchecklist(){
 	return newchecklist;
 }
 
+//preconditions: a pointer to a checklist, the name of the event
+//you want to create of type string, and the date of type string.
+//postconditions:adds a new thingtodo with the name, and date given
+//to the end of the checklist inputted.
 void addtochecklist(checklist* checklist,string name, string date){
 	thingtodo* newevent = new thingtodo;
 	newevent->name = name;
@@ -31,6 +36,9 @@ void addtochecklist(checklist* checklist,string name, string date){
 		return;
 	}
 }
+
+//preconditions: pointer to a checklist
+//postconditions: prints out the contents of the checklist
 void printchecklist(checklist* checklist){
 	if(checklist == NULL){
 		cout<<"list not found"<<endl;
@@ -53,6 +61,9 @@ void printchecklist(checklist* checklist){
 	return;
 }
 
+//preconditons: pointer to a checklist, the event name of type string
+//postconditions: when the checklist is printed, the event inputted
+//will be checked off
 void checkoff(checklist* checklist,string eventname){
 	for(thingtodo* event = checklist->first; event!= NULL; event = event->next){
 		if(event->name == eventname){
@@ -62,6 +73,8 @@ void checkoff(checklist* checklist,string eventname){
 	return;
 }
 
+//preconditions: pointer to a checklist
+//postconditions: deletes all checked off items on the checklist
 void deletecheckedoffitems(checklist* checklist){
 	if(checklist->first == NULL){
 		cout<<"checklist is empty"<<endl;
@@ -90,6 +103,9 @@ void deletecheckedoffitems(checklist* checklist){
 	return;
 }
 
+//preconditions: pointer to a checklist, and the event name that is to be
+//deleted of type string
+//postconditions: deletes the item off of the checklist
 void deleteitem(checklist* checklist, string eventname){
 	for(thingtodo* event = checklist->first; event != NULL; event = event->next){
 		if(event->name == eventname){
@@ -102,6 +118,8 @@ void deleteitem(checklist* checklist, string eventname){
 	return;
 }
 
+//preconditions: pointer to a checklist
+//postcondiitons: deletes the checklist and frees up memory
 void deletechecklist(checklist* &checklist){
 	thingtodo* event = checklist->first;
 	while(event!=NULL){
@@ -112,12 +130,3 @@ void deletechecklist(checklist* &checklist){
 	delete checklist;
 	checklist= NULL;
 }
-			
-
-
-
-	
-
-
-
-
