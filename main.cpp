@@ -1,32 +1,71 @@
 #include <iostream>
+#include <string>
+#include "checklistfuncs.h"
+
 using namespace std;
 
 /*=============================================================================
- |     Author:    STUDENT'S NAME HERE
- |   To Compile:  EXPLAIN HOW TO COMPILE THIS PROGRAM 
+ |     Author: Isaac Lam
+ |   To Compile:make main  
  |
- |        Class:  NAME AND TITLE OF THE CLASS FOR WHICH THIS PROGRAM WAS
- |                      WRITTEN
- |    Concepts:   DESCRIBE THE CONCEPTS FROM THE COURSE THAT THIS PROGRAM USES
+ |        Class:CS16  
+ |               
+ |    Concepts:if else statements, linked list, pointers, loops  
  |
  +-----------------------------------------------------------------------------
  |
- |  Description:  DESCRIBE THE PROBLEM THAT THIS PROGRAM WAS WRITTEN TO
- |      SOLVE.
+ |  Description:  This program creates a structure that is a checklist
+ it allows the user to create a to do list, add things to the list,
+ check things off, and delete them completely.
  |
- |        Input:  DESCRIBE THE INPUT THAT THE PROGRAM REQUIRES.
+ |        Input: the main function just shows how these structures and 
+ functions can be used in order to create an effective todo list
  |
- |       Output:  DESCRIBE THE OUTPUT THAT THE PROGRAM PRODUCES.
+ |       Output:displays how the functions works. 
  |
- |    Algorithm:  OUTLINE THE APPROACH USED BY THE PROGRAM TO SOLVE THE
- |      PROBLEM.
+ |    Algorithm:  created a linked list struct with a Node called thingtodo.
+ these thingstodo can be added or deleted to the linked list struct through functions this is done through many if else conditions, and iterating through the linked lists.
  |
- |   Known Bugs:  IF THE PROGRAM DOES NOT FUNCTION CORRECTLY IN SOME
- |      SITUATIONS, DESCRIBE THE SITUATIONS AND PROBLEMS HERE.
+ |   Known Bugs: none that are known 
  |
  *===========================================================================*/
 
 int main () {
+	
+	//create empty check list
+	checklist* checklist = createchecklist();
+	cout<<"created empty check list"<<endl;
+	printchecklist(checklist);
+	cout<<endl;
 
-    return 0;
+	//add 3 items to checklist
+	addtochecklist(checklist,"do laundry","3/20/19");
+	addtochecklist(checklist,"finish CS Extra Credit", "3/20/19");
+	addtochecklist(checklist,"CS16 Final", "3/21/19");
+	cout<<"added 3 items to checklist"<<endl;
+	printchecklist(checklist);
+
+	//checked off event "do laundry"
+	checkoff(checklist,"do laundry");
+	cout<<"checked of event 'do laundry'"<<endl;
+	printchecklist(checklist);
+
+	//deleted checked of items
+	deletecheckedoffitems(checklist);
+	cout<<"deleted checked off items"<<endl;
+	printchecklist(checklist);
+
+	//deleted item "CS16 Final" without checking off first 
+	deleteitem(checklist,"CS16 Final");
+	cout<<"deleted CS16 Final without checking off first"<<endl;
+	printchecklist(checklist);
+
+	//deleted list
+	cout<<"deleted list"<<endl;
+	deletechecklist(checklist);
+	printchecklist(checklist);
+	
+
+	return 0;
+	
 }
