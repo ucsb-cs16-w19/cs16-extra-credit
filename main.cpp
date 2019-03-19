@@ -2,7 +2,7 @@
 using namespace std;
 
 /*=============================================================================
- |     Author: Gabriel Granados
+ |     Author: Gabriel Granados (FULL EXPLANATION AND DEMONSTRATION https://youtu.be/VNWfSLs9WPc)
  |   To Compile:  Download the Arduino software thats free on https://www.arduino.cc/en/Main/Software
  |        Class:  NAME AND TITLE OF THE CLASS FOR WHICH THIS PROGRAM WAS
  |                      WRITTEN
