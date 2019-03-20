@@ -1,32 +1,46 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 /*=============================================================================
- |     Author:    STUDENT'S NAME HERE
- |   To Compile:  EXPLAIN HOW TO COMPILE THIS PROGRAM 
+ |     Author:   Danming Wang
+ |   To Compile:  g++ -o main main.cpp
  |
- |        Class:  NAME AND TITLE OF THE CLASS FOR WHICH THIS PROGRAM WAS
- |                      WRITTEN
- |    Concepts:   DESCRIBE THE CONCEPTS FROM THE COURSE THAT THIS PROGRAM USES
+ |        Class:  string recVowels(string s)
+ |                    
+ |    Concepts:   This program uses recursion and string functions.
  |
  +-----------------------------------------------------------------------------
  |
- |  Description:  DESCRIBE THE PROBLEM THAT THIS PROGRAM WAS WRITTEN TO
- |      SOLVE.
+ |  Description:  This program is written to find what vowels are contained in the input string.
  |
- |        Input:  DESCRIBE THE INPUT THAT THE PROGRAM REQUIRES.
+ |        Input:  a string consists of letters.
  |
- |       Output:  DESCRIBE THE OUTPUT THAT THE PROGRAM PRODUCES.
+ |       Output:  a string that contains only the vowels in order of appearance in the input string
  |
- |    Algorithm:  OUTLINE THE APPROACH USED BY THE PROGRAM TO SOLVE THE
- |      PROBLEM.
+ |    Algorithm:  set the base case, which is when searching to the end of the input string, i.e. s.length()==0; Then try to write a recursive call to reach the base case.
  |
- |   Known Bugs:  IF THE PROGRAM DOES NOT FUNCTION CORRECTLY IN SOME
- |      SITUATIONS, DESCRIBE THE SITUATIONS AND PROBLEMS HERE.
+ |   Known Bugs:  The base case is wrong. Or the recursive call fails to reach the base case. Or foget to consider the uppercase and lower case of each character.
  |
  *===========================================================================*/
 
-int main () {
+string recVowels(string s){
+	string vowel = "aeiouAEIOU";
+	string emp = "";
+	int len = s.length();
+	if (len == 0){
+		return emp;}
+	else {
+		if (vowel.find(s[0])!=-1){
+			return s[0]+ recVowels(s.substr(1,len-1));}
+		else {
+			return recVowels(s.substr(1,len-1));}
+	}
+}
 
-    return 0;
+int main () {
+	cout << "Vowels in 'apple': "<< recVowels("apple")<< endl;
+	cout << "Vowels in 'ApPle': "<< recVowels("ApPle")<< endl;
+	cout << "Vowels in 'computer science': "<< recVowels("computer science")<< endl;
+	return 0;
 }
