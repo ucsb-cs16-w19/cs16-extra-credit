@@ -2,31 +2,84 @@
 using namespace std;
 
 /*=============================================================================
- |     Author:    STUDENT'S NAME HERE
- |   To Compile:  EXPLAIN HOW TO COMPILE THIS PROGRAM 
+ |     Author:   Yulei Tan
+ |   To Compile:  make main
  |
- |        Class:  NAME AND TITLE OF THE CLASS FOR WHICH THIS PROGRAM WAS
- |                      WRITTEN
- |    Concepts:   DESCRIBE THE CONCEPTS FROM THE COURSE THAT THIS PROGRAM USES
+ |        Class:  CMPSC 16  - PROBLEM SOLVING I
+ |    Concepts:   Recursion, Linked list
  |
  +-----------------------------------------------------------------------------
  |
- |  Description:  DESCRIBE THE PROBLEM THAT THIS PROGRAM WAS WRITTEN TO
- |      SOLVE.
+ |  Description:  Reverse a linked list without extra space
  |
- |        Input:  DESCRIBE THE INPUT THAT THE PROGRAM REQUIRES.
+ |        Input:  poiner to head of linkedlist.
  |
- |       Output:  DESCRIBE THE OUTPUT THAT THE PROGRAM PRODUCES.
+ |       Output:  pointer to new head of linkedlist.
  |
- |    Algorithm:  OUTLINE THE APPROACH USED BY THE PROGRAM TO SOLVE THE
- |      PROBLEM.
+ |    Algorithm:  Write a function using recursion. Each time, made 
+ |                parameter->next point to recursion of its parent
+ |      
  |
- |   Known Bugs:  IF THE PROGRAM DOES NOT FUNCTION CORRECTLY IN SOME
- |      SITUATIONS, DESCRIBE THE SITUATIONS AND PROBLEMS HERE.
+ |   Known Bugs:  None. Program works well.
  |
  *===========================================================================*/
 
-int main () {
+struct Node {
+  int data;
+  Node *next;
+};
 
+struct LinkedList {
+  Node *head;
+  Node *tail;
+};
+
+
+LinkedList * arrayToLinkedList(int *a, int size) { // copied from lab7
+  LinkedList * list = new LinkedList;
+  list->head=NULL; 
+  list->tail=NULL;
+  for (int i=0; i<size; i++) {
+    // add array[i] to the list
+
+    if ( list->head==NULL) {
+      list->head = new Node;
+      list->head->data = a[i]; // (*head).data = a[i];
+      list->head->next = NULL;
+      list->tail = list->head;
+    } else {
+      list->tail->next = new Node;
+      list->tail = list->tail->next;
+      list->tail->next = NULL;
+      list->tail->data = a[i];
+    }
+  }
+
+  return list; // return ptr to new list
+}
+
+
+Node* reverseLinkedList(Node *node){
+    if (node ->next == NULL) return node;
+    Node* next = reverseLinkedList(node->next);
+    node->next->next = node;
+    node->next = NULL;
+    return next;
+}
+
+void printLinkedList(Node* head){
+    for (Node* iter = head; iter != NULL; iter = iter->next)
+        cout << iter->data << "->";
+    cout << "NULL\n";
+}
+
+int main () {
+	int arr[] = {1,2,3,4,5,6,7,8,9,10};
+	LinkedList *list = arrayToLinkedList(arr,10);
+	cout << "LinkedList before: ";
+    printLinkedList(list->head);
+    Node* new_head = reverseLinkedList(list->head);
+    cout << "LinkedList after: ";
+    printLinkedList(new_head);
     return 0;
 }
