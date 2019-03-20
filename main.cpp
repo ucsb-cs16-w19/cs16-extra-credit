@@ -2,24 +2,21 @@
 using namespace std;
 
 /*=============================================================================
- |     Author:    STUDENT'S NAME HERE
- |   To Compile:  EXPLAIN HOW TO COMPILE THIS PROGRAM
+ |     Author:    Jonathan Sun
+ |   To Compile:  Just type make
  |
- |        Class:  NAME AND TITLE OF THE CLASS FOR WHICH THIS PROGRAM WAS
- |                      WRITTEN
- |    Concepts:   DESCRIBE THE CONCEPTS FROM THE COURSE THAT THIS PROGRAM USES
+ |        Class:  CS 16 Extra Credit Assignment
+ |    Concepts:   For loops, If statements, Pass by pointer, Arrays, Functions
  |
  +-----------------------------------------------------------------------------
  |
- |  Description:  DESCRIBE THE PROBLEM THAT THIS PROGRAM WAS WRITTEN TO
- |      SOLVE.
+ |  Description:  I will be taking linear algebra next quarter, so I thoughtit would be cool to code Gaussian Elimination to solve augmented matrcies.
  |
- |        Input:  DESCRIBE THE INPUT THAT THE PROGRAM REQUIRES.
+ |        Input:  The input is the number of rows your matrix will have, creating an n x n+1 matrix. You then input the values of each element in the matrix. There will be instrcutions printed during runtime to help explain this better.
  |
- |       Output:  DESCRIBE THE OUTPUT THAT THE PROGRAM PRODUCES.
+ |       Output:  This function solves a system of linear equations by back substitution. There can also be answers that contain "free variables"
  |
- |    Algorithm:  OUTLINE THE APPROACH USED BY THE PROGRAM TO SOLVE THE
- |      PROBLEM.
+ |    Algorithm:  First input the information. rowSwap is called, which swaps the current row with another if the pivot value is 0. Then rowEchelonForm is called, which simplifies the matrix down to form an "upper right hand triangle." This loops over until the triangle is complete. Finally backSubstitution is called to solve for the variables in the system of linear equations.
  |
  |   Known Bugs:  IF THE PROGRAM DOES NOT FUNCTION CORRECTLY IN SOME
  |      SITUATIONS, DESCRIBE THE SITUATIONS AND PROBLEMS HERE.
@@ -67,16 +64,7 @@ int main() {
 		swapRow(matrix, pivot, rows, columns);
 		rowEchelonForm(matrix, pivot, rows, columns);
 		pivot++;
-	}
-	cout << "Pivot value: " << pivot << endl;
-	
-	cout << "New Matrix" << endl;
-	for(int i=0; i<rows; i++) {
-		for(int j=0; j<columns; j++) {
-			cout << matrix[i*columns + j] << " ";
-		}
-		cout << endl;
-	}
+	}	
 	backSubstitution(matrix, pivot, rows, columns);
 }
 
@@ -127,20 +115,20 @@ void rowEchelonForm(double *matrix, int pivot, int rows, int columns) {
 			}
 		}
 	}
-
-	matrix[pivot*columns+pivot] /= matrix[pivot*columns+pivot];
-	matrix[pivot*columns+pivot+1] /= matrix[pivot*columns+pivot];
 }
 
 void backSubstitution(double *matrix, int pivot, int rows, int columns) {
 	double answer[rows];
-	for(int i=rows-1; i>=0; i--) {
-		int ans = 0;
-		for(int j=i; j<=rows-1; j++) {
-			ans = ans + matrix[i*columns+j] * answer[j];
+	for(int i=0; i<rows; i++) {
+		answer[i] = 0;
+	}
+	answer[rows-1] = matrix[pivot*columns+pivot+1] / matrix[pivot*columns+pivot];
+	pivot--;
+	for(int i=rows-2; i>=0; i--) {
+		for(int j=0; j<columns-1; j++) {
+			answer[i] = answer[i] + matrix[i*columns+j]*answer[j];
 		}
-		answer[i] = (answer[i*columns+rows]-ans) / answer[pivot*columns+pivot];
-		pivot--;
+		answer[i] = matrix[(i+1)*columns-1] - answer[i];
 	}
 	for(int i=0; i<rows; i++) {
 		cout << "x" << i+1 << ": " << answer[i] << endl;
