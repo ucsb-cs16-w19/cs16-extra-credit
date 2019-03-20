@@ -1,8 +1,14 @@
 # Word finder of Iliad
 This program is a simplified searching engine for Homeric Epic Iliad. 
 This program is inspired by one of my classics professor who works on a project digitalizing Roman and Greek literature
+
+---
+
 Type "make tests" and "make Iliad" to compile the codes
 Type "./FuncsTest" and ./main to run the test function and the main function
+
+---
+
 It will show the first three occurances of the input word and its line number. If there are less than three occurances in the whole Iliad, the result will NA and the line number will be 0. If the input is "exit", the program will stop.
 For example:
 
