@@ -10,7 +10,7 @@ using namespace std;
  |
  +-----------------------------------------------------------------------------
  |
- |  Description:  I will be taking linear algebra next quarter, so I thoughtit would be cool to code Gaussian Elimination to solve augmented matrcies.
+ |  Description:  I will be taking linear algebra next quarter, so I thought it would be cool to code Gaussian Elimination to solve augmented matrcies.
  |
  |        Input:  The input is the number of rows your matrix will have, creating an n x n+1 matrix. You then input the values of each element in the matrix. There will be instrcutions printed during runtime to help explain this better.
  |
@@ -18,8 +18,7 @@ using namespace std;
  |
  |    Algorithm:  First input the information. rowSwap is called, which swaps the current row with another if the pivot value is 0. Then rowEchelonForm is called, which simplifies the matrix down to form an "upper right hand triangle." This loops over until the triangle is complete. Finally backSubstitution is called to solve for the variables in the system of linear equations.
  |
- |   Known Bugs:  IF THE PROGRAM DOES NOT FUNCTION CORRECTLY IN SOME
- |      SITUATIONS, DESCRIBE THE SITUATIONS AND PROBLEMS HERE.
+ |   Known Bugs:  The answers are sometimes off because of rounding issues and I left it because I think I spent too much time on this and that I should go study for the final instead.
  |
  *===========================================================================*/
 void swapRow(double *matrix, int pivot, int rows, int columns);
@@ -47,6 +46,7 @@ int main() {
 	for(int i=0; i<rows*columns; i++) {
 		cin >> *(matrix + i);
 	}
+	cout << endl;
 
 //turns 1 line of array into 2D array
 
@@ -57,6 +57,7 @@ int main() {
 		}
 		cout << endl;
 	}
+	cout << endl;
 
 //begins Gaussian Elimination
 	int pivot = 0;
@@ -64,7 +65,7 @@ int main() {
 		swapRow(matrix, pivot, rows, columns);
 		rowEchelonForm(matrix, pivot, rows, columns);
 		pivot++;
-	}	
+	}
 	backSubstitution(matrix, pivot, rows, columns);
 }
 
@@ -92,12 +93,13 @@ void rowEchelonForm(double *matrix, int pivot, int rows, int columns) {
 		}
 	}
 
-	int multiplier = 0;
-	if(matrix[pivot*columns+pivot] != 1) {
+	double multiplier = 0;
+	cout << "Old Multiplier: " << multiplier << endl;
+	cout << matrix[pivot*columns+pivot] << endl;
 		multiplier = matrix[pivot*columns+pivot];
-		for(int i=1; i<columns; i++) {
+		cout << "Multiplier: " << multiplier << endl;
+		for(int i=0; i<columns; i++) {
 			matrix[pivot*columns+i] /= multiplier;
-		}
 	}
 
 	double temp[columns-pivot];
