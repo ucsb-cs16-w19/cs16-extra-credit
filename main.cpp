@@ -25,37 +25,36 @@ using namespace std;
  *===========================================================================*/
 
 struct Node {
-  int data;
-  Node *next;
+	int data;
+	Node *next;
 };
 
 struct LinkedList {
-  Node *head;
-  Node *tail;
+	Node *head;
+	Node *tail;
 };
 
 
 LinkedList * arrayToLinkedList(int *a, int size) { // copied from lab7
-  LinkedList * list = new LinkedList;
-  list->head=NULL; 
-  list->tail=NULL;
-  for (int i=0; i<size; i++) {
-    // add array[i] to the list
+	LinkedList * list = new LinkedList;
+	list->head=NULL; 
+	list->tail=NULL;
+	for (int i=0; i<size; i++) {
+	    // add array[i] to the list
 
-    if ( list->head==NULL) {
-      list->head = new Node;
-      list->head->data = a[i]; // (*head).data = a[i];
-      list->head->next = NULL;
-      list->tail = list->head;
-    } else {
-      list->tail->next = new Node;
-      list->tail = list->tail->next;
-      list->tail->next = NULL;
-      list->tail->data = a[i];
-    }
-  }
-
-  return list; // return ptr to new list
+	    if ( list->head==NULL) {
+			list->head = new Node;
+			list->head->data = a[i]; // (*head).data = a[i];
+			list->head->next = NULL;
+			list->tail = list->head;
+	    }else {
+			list->tail->next = new Node;
+			list->tail = list->tail->next;
+			list->tail->next = NULL;
+			list->tail->data = a[i];
+	    }
+	}
+  	return list; // return ptr to new list
 }
 
 
@@ -76,9 +75,12 @@ void printLinkedList(Node* head){
 int main () {
 	int arr[] = {1,2,3,4,5,6,7,8,9,10};
 	LinkedList *list = arrayToLinkedList(arr,10);
+
 	cout << "LinkedList before: ";
     printLinkedList(list->head);
+
     Node* new_head = reverseLinkedList(list->head);
+    
     cout << "LinkedList after: ";
     printLinkedList(new_head);
     return 0;
