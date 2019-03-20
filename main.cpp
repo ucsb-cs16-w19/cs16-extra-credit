@@ -36,7 +36,7 @@ int main() {
 	cin >> n;
 	cout << endl;
 
-//creates 1 huge block of memory
+//creates 1 huge block of memory (array)
 
 	cout << "You may visualize your augmented matrix by spacing/tabbing for elements in a" << endl;
 	cout << "row and pressing Enter for new equation" << endl;
@@ -60,6 +60,7 @@ int main() {
 	cout << endl;
 
 //begins Gaussian Elimination
+
 	int pivot = 0;
 	for(int i=0; i<rows-1; i++) {
 		swapRow(matrix, pivot, rows, columns);
@@ -70,7 +71,7 @@ int main() {
 }
 
 
-//checks if row 1 needs swapping
+//checks if row needs swapping
 void swapRow(double *matrix, int pivot, int rows, int columns) {
 	double temp[columns - pivot];
 	if(matrix[pivot*columns+pivot] == 0) {
@@ -86,6 +87,7 @@ void swapRow(double *matrix, int pivot, int rows, int columns) {
 	}
 }
 
+//forms upper right triangle for back substitution
 void rowEchelonForm(double *matrix, int pivot, int rows, int columns) {
 	if(matrix[pivot*columns+pivot] < 0) {
 		for(int i=0; i<columns; i++) {
@@ -119,6 +121,7 @@ void rowEchelonForm(double *matrix, int pivot, int rows, int columns) {
 	}
 }
 
+//solves the linear system
 void backSubstitution(double *matrix, int pivot, int rows, int columns) {
 	double answer[rows];
 	for(int i=0; i<rows; i++) {
