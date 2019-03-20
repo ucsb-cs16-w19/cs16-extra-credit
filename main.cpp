@@ -106,27 +106,51 @@ void swapRow(double *matrix, int pivot, int rows, int columns) {
 
 void rowEchelonForm(double *matrix, int pivot, int rows, int columns) {
 	if(matrix[pivot*columns+pivot] < 0) {
+		cout << "Divide by -1" << endl;
 		for(int i=0; i<columns; i++) {
-			matrix[i] *= -1;
+			matrix[pivot*columns+i] *= -1;
 		}
 	}
+	/*
+	cout << "New Matrix" << endl;
+	for(int i=0; i<rows; i++) {
+		for(int j=0; j<columns; j++) {
+			cout << matrix[i*columns + j] << " ";
+		}
+		cout << endl;
+	}
+	*/
 
+	int multiplier = 0;
+	if(matrix[pivot*columns+pivot] > 1) {
+		multiplier = matrix[pivot*columns+pivot];
+		for(int i=1; i<columns; i++) {
+			matrix[pivot*columns+i] /= multiplier;
+		}
+	}
+	cout << "New Matrix" << endl;
+	for(int i=0; i<rows; i++) {
+		for(int j=0; j<columns; j++) {
+			cout << matrix[i*columns + j] << " ";
+		}
+		cout << endl;
+	}
 	double temp[columns-pivot];
 	for(int i=1; i<rows; i++) {
-		for(int j=0; j<columns; j++) {
 			if(matrix[i*columns+pivot] != 0) {
 				if(matrix[i*columns+pivot] > 0) {
 					for(int k=0; k<columns; k++) {
-						matrix[i*columns*k] *= -1;
+						matrix[i*columns+k] *= -1;
 					}
 				}
+				int multiplier = -matrix[i*columns];
 				for(int q=0; q<columns; q++) {
-					temp[q] = -matrix[i*columns] * matrix[q];
+					temp[q] = multiplier * matrix[q];
+					cout << temp[q] << endl;
 					matrix[i*columns+q] += temp[q];
 				}
 			}
 		}
-	}
 	//new matrix
 	cout << "Performed REF" << endl;
 	for(int i=0; i<rows; i++) {
