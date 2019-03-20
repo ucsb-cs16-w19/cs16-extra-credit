@@ -3,6 +3,9 @@ This program is a simplified searching engine for Homeric Epic Iliad.
 This program is inspired by one of my classics professor who works on a project digitalizing Roman and Greek literature
 
 ---
+The program uses I/O stream, pointer, string functions, linked list, and loops
+
+---
 
 Type "make tests" and "make Iliad" to compile the codes
 Type "./FuncsTest" and ./main to run the test function and the main function
