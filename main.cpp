@@ -4,7 +4,7 @@ using namespace std;
 
 /*=============================================================================
  |     Author:   Danming Wang
- |   To Compile:  ./main 
+ |   To Compile:  g++ -o main main.cpp
  |
  |        Class:  string recVowels(string s)
  |                    
