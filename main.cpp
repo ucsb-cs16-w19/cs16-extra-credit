@@ -29,6 +29,8 @@ void swapRow(double *matrix, int pivot, int rows, int columns);
 
 void rowEchelonForm(double *matrix, int pivot, int rows, int columns);
 
+void backSubstitution(double *matrix, int pivot, int rows, int columns);
+
 int main() {
 
 //asks for user input
@@ -66,6 +68,7 @@ int main() {
 		rowEchelonForm(matrix, pivot, rows, columns);
 		pivot++;
 	}
+	cout << "Pivot value: " << pivot << endl;
 	
 	cout << "New Matrix" << endl;
 	for(int i=0; i<rows; i++) {
@@ -74,7 +77,7 @@ int main() {
 		}
 		cout << endl;
 	}
-	
+	backSubstitution(matrix, pivot, rows, columns);
 }
 
 
@@ -92,71 +95,54 @@ void swapRow(double *matrix, int pivot, int rows, int columns) {
 			}
 		}
 	}
-
-
-	//new matrix
-	cout << "Performed row swap" << endl;
-	for(int i=0; i<rows; i++) {
-		for(int j=0; j<columns; j++) {
-			cout << matrix[i*columns + j] << " ";
-		}
-		cout << endl;
-	}
 }
 
 void rowEchelonForm(double *matrix, int pivot, int rows, int columns) {
 	if(matrix[pivot*columns+pivot] < 0) {
-		cout << "Divide by -1" << endl;
 		for(int i=0; i<columns; i++) {
 			matrix[pivot*columns+i] *= -1;
 		}
 	}
-	/*
-	cout << "New Matrix" << endl;
-	for(int i=0; i<rows; i++) {
-		for(int j=0; j<columns; j++) {
-			cout << matrix[i*columns + j] << " ";
-		}
-		cout << endl;
-	}
-	*/
 
 	int multiplier = 0;
-	if(matrix[pivot*columns+pivot] > 1) {
+	if(matrix[pivot*columns+pivot] != 1) {
 		multiplier = matrix[pivot*columns+pivot];
 		for(int i=1; i<columns; i++) {
 			matrix[pivot*columns+i] /= multiplier;
 		}
 	}
-	cout << "New Matrix" << endl;
-	for(int i=0; i<rows; i++) {
-		for(int j=0; j<columns; j++) {
-			cout << matrix[i*columns + j] << " ";
-		}
-		cout << endl;
-	}
+
 	double temp[columns-pivot];
-	for(int i=1; i<rows; i++) {
-			if(matrix[i*columns+pivot] != 0) {
-				if(matrix[i*columns+pivot] > 0) {
-					for(int k=0; k<columns; k++) {
-						matrix[i*columns+k] *= -1;
-					}
-				}
-				int multiplier = -matrix[i*columns];
-				for(int q=0; q<columns; q++) {
-					temp[q] = multiplier * matrix[q];
-					cout << temp[q] << endl;
-					matrix[i*columns+q] += temp[q];
+	for(int i=pivot+1; i<rows; i++) {
+		if(matrix[i*columns+pivot] != 0) {
+			if(matrix[i*columns+pivot] > 0) {
+				for(int k=0; k<columns; k++) {
+					matrix[i*columns+k] *= -1;
 				}
 			}
+			int multiplier = -matrix[i*columns+pivot];
+			for(int q=0; q<columns-pivot; q++) {
+				temp[q] = multiplier * matrix[pivot*columns+pivot+q];
+				matrix[i*columns+q+pivot] += temp[q];
+			}
 		}
-	//new matrix
-	cout << "Performed REF" << endl;
+	}
+
+	matrix[pivot*columns+pivot] /= matrix[pivot*columns+pivot];
+	matrix[pivot*columns+pivot+1] /= matrix[pivot*columns+pivot];
+}
+
+void backSubstitution(double *matrix, int pivot, int rows, int columns) {
+	double answer[rows];
+	for(int i=rows-1; i>=0; i--) {
+		int ans = 0;
+		for(int j=i; j<=rows-1; j++) {
+			ans = ans + matrix[i*columns+j] * answer[j];
+		}
+		answer[i] = (answer[i*columns+rows]-ans) / answer[pivot*columns+pivot];
+		pivot--;
+	}
 	for(int i=0; i<rows; i++) {
-		for(int j=0; j<columns; j++) {
-			cout << matrix[i*columns + j] << " ";
-		}
-		cout << endl;
+		cout << "x" << i+1 << ": " << answer[i] << endl;
 	}
 }
