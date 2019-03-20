@@ -25,7 +25,9 @@ using namespace std;
  |      SITUATIONS, DESCRIBE THE SITUATIONS AND PROBLEMS HERE.
  |
  *===========================================================================*/
-void swapRow(double *matrix, int pivot, int counter, int rows, int columns);
+void swapRow(double *matrix, int pivot, int rows, int columns);
+
+void rowEchelonForm(double *matrix, int pivot, int rows, int columns);
 
 int main() {
 
@@ -56,15 +58,15 @@ int main() {
 		}
 		cout << endl;
 	}
+
+//begins Gaussian Elimination
 	int pivot = 0;
-	int counter = 1;
-	cout << "Matrix 1" << endl;
-	swapRow(matrix, pivot, counter, rows, columns);
-	pivot++;
-	counter++;
-	cout << "Matrix 2" << endl;
-	swapRow(matrix, pivot, counter, rows, columns);
-	/*
+	for(int i=0; i<rows-1; i++) {
+		swapRow(matrix, pivot, rows, columns);
+		rowEchelonForm(matrix, pivot, rows, columns);
+		pivot++;
+	}
+	
 	cout << "New Matrix" << endl;
 	for(int i=0; i<rows; i++) {
 		for(int j=0; j<columns; j++) {
@@ -72,21 +74,20 @@ int main() {
 		}
 		cout << endl;
 	}
-	*/
+	
 }
 
-//time for Gaussian Elimination
 
 //checks if row 1 needs swapping
-void swapRow(double *matrix, int pivot, int counter, int rows, int columns) {
+void swapRow(double *matrix, int pivot, int rows, int columns) {
 	double temp[columns - pivot];
 	if(matrix[pivot*columns+pivot] == 0) {
 		for(int i=pivot; i<rows; i++) {
 			if(matrix[i*columns+pivot] != 0) {
-				for(int j=0; j<columns-pivot; j++) {
-					temp[j] = *(matrix+(i*columns+pivot));
-					matrix[i*columns+pivot] = matrix[j];
-					matrix[j] = temp[j];
+				for(int j=0; j<columns; j++) {
+					temp[j] = *(matrix+(i*columns+j));
+					matrix[i*columns+j] = matrix[pivot*columns+j];
+					matrix[pivot*columns+j] = temp[j];
 				}
 			}
 		}
@@ -95,6 +96,39 @@ void swapRow(double *matrix, int pivot, int counter, int rows, int columns) {
 
 	//new matrix
 	cout << "Performed row swap" << endl;
+	for(int i=0; i<rows; i++) {
+		for(int j=0; j<columns; j++) {
+			cout << matrix[i*columns + j] << " ";
+		}
+		cout << endl;
+	}
+}
+
+void rowEchelonForm(double *matrix, int pivot, int rows, int columns) {
+	if(matrix[pivot*columns+pivot] < 0) {
+		for(int i=0; i<columns; i++) {
+			matrix[i] *= -1;
+		}
+	}
+
+	double temp[columns-pivot];
+	for(int i=1; i<rows; i++) {
+		for(int j=0; j<columns; j++) {
+			if(matrix[i*columns+pivot] != 0) {
+				if(matrix[i*columns+pivot] > 0) {
+					for(int k=0; k<columns; k++) {
+						matrix[i*columns*k] *= -1;
+					}
+				}
+				for(int q=0; q<columns; q++) {
+					temp[q] = -matrix[i*columns] * matrix[q];
+					matrix[i*columns+q] += temp[q];
+				}
+			}
+		}
+	}
+	//new matrix
+	cout << "Performed REF" << endl;
 	for(int i=0; i<rows; i++) {
 		for(int j=0; j<columns; j++) {
 			cout << matrix[i*columns + j] << " ";
