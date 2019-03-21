@@ -2,27 +2,25 @@
 using namespace std;
 
 /*=============================================================================
- |     Author:    STUDENT'S NAME HERE
- |   To Compile:  EXPLAIN HOW TO COMPILE THIS PROGRAM 
+ |     Author:    HANCHENG GONG (9499088)
+ 
+ |   To Compile:  Follow the instructions which is enter the current date and a user's birthdate in order to calculate the user's exact age
  |
- |        Class:  NAME AND TITLE OF THE CLASS FOR WHICH THIS PROGRAM WAS
- |                      WRITTEN
- |    Concepts:   DESCRIBE THE CONCEPTS FROM THE COURSE THAT THIS PROGRAM USES
+ |        Class:   CS16 WINTER 2019
+ |                      
+ |    Concepts:   I had used basice concepts of c++ such as cin,cout,assign variables,function declaration, function defnitions, if statement and switch/case
  |
  +-----------------------------------------------------------------------------
  |
- |  Description:  DESCRIBE THE PROBLEM THAT THIS PROGRAM WAS WRITTEN TO
- |      SOLVE.
+ |  Description:   This program is created for the users who is interesting to know their exact age
+ |     
+ |        Input:  It requires to input today's date and user's birthday
  |
- |        Input:  DESCRIBE THE INPUT THAT THE PROGRAM REQUIRES.
+ |       Output:  The output will show user's age in years, months, and days. Also if today is user's birthday, it will show happy birthday!
  |
- |       Output:  DESCRIBE THE OUTPUT THAT THE PROGRAM PRODUCES.
+ |    Algorithm:  Not much calculations invloved except the part where to calculate the user's age, but there are a lot of logical and relational operators involved 
  |
- |    Algorithm:  OUTLINE THE APPROACH USED BY THE PROGRAM TO SOLVE THE
- |      PROBLEM.
- |
- |   Known Bugs:  IF THE PROGRAM DOES NOT FUNCTION CORRECTLY IN SOME
- |      SITUATIONS, DESCRIBE THE SITUATIONS AND PROBLEMS HERE.
+ |   Known Bugs:  I cannot identify any bug for now, the program works smoothly.
  |
  *===========================================================================*/
 
