@@ -35,8 +35,7 @@ using namespace std;
  |                amount of scholarship.
  |
  |    Algorithm:  Struct, List, Pointer, If-statement, Switch, and other basic
- |                application of C++ language.
- |  
+ |                application of C++ language. 
  |
  |   Known Bugs:  When the system asks for " Enter the student information for
  |                adding students to the waitlist ," do not press characters 
