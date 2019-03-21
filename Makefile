@@ -1,4 +1,4 @@
-main: main.o
-	g++ main.cpp -o main
+quiz: main.cpp functions.cpp
+	g++ main.cpp functions.cpp -o quiz
 clean:
-	rm -f *.o main
+	rm -f *.o quiz
